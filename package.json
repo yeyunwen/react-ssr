@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "pnpm build & pnpm start",
-    "build": "webpack --watch --config webpack.config.js",
-    "start": "nodemon"
+    "dev": "pnpm dev:start & pnpm dev:build:client & pnpm dev:build:server",
+    "dev:start": "nodemon",
+    "dev:build:server": "webpack --watch --config webpack.server.js",
+    "dev:build:client": "webpack --watch --config webpack.client.js"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +24,7 @@
     "nodemon": "^3.1.4",
     "webpack": "^5.93.0",
     "webpack-cli": "^5.1.4",
+    "webpack-merge": "^6.0.1",
     "webpack-node-externals": "^3.0.0"
   }
 }

@@ -1,5 +1,6 @@
 import { renderToString } from "react-dom/server";
 import App from "@/server/App";
+import getScript from "./getScript";
 
 export default function (req, res) {
   const componentHtml = renderToString(<App />);
@@ -11,7 +12,8 @@ export default function (req, res) {
   <title>Document</title>
 </head>
 <body>
-  ${componentHtml}
+  <div id="root">${componentHtml}</div>
+  ${getScript()}
 </body>
 </html>`;
 
