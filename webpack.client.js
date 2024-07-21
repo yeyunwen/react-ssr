@@ -1,6 +1,7 @@
 const path = require("path");
 const { merge } = require("webpack-merge");
 const baseConfig = require("./webpack.base.js");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 /** @type {import('webpack').Configuration} */
 const clientConfig = {
@@ -12,6 +13,29 @@ const clientConfig = {
     clean: {
       keep: "favicon.ico",
     },
+  },
+  plugins: [new MiniCssExtractPlugin({ filename: "css/bundle.[hash:5].css" })],
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader",
+            options: {
+              modules: {
+                auto: /\.module\.css$/i,
+                localIdentName: "[name]__[local]--[hash:base64:5]",
+                namedExport: false,
+                mode: "local",
+              },
+              esModule: true,
+            },
+          },
+        ],
+      },
+    ],
   },
 };
 

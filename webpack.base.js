@@ -2,6 +2,7 @@ const path = require("path");
 
 /** @type {import('webpack').Configuration} */
 module.exports = {
+  devtool: "source-map",
   mode: "development",
   resolve: {
     alias: {
